@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cache.CacheManager;
+
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -16,6 +18,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 /**
@@ -29,11 +32,11 @@ import java.time.Duration;
 @Configuration
 @EnableCaching
 public class RedisConfig {
-    //    @Bean
+//        @Bean
 //    public KeyGenerator keyGenerator() {
 //        return new KeyGenerator() {
 //            @Override
-//            public Object generate(Object target, Method method, Object... params) {
+//            public Object generate(Object o, Method method, Object... objects) {
 //                StringBuilder sb = new StringBuilder();
 //                sb.append(target.getClass().getName());
 //                sb.append(method.getName());
@@ -42,6 +45,7 @@ public class RedisConfig {
 //                }
 //                return sb.toString();
 //            }
+//
 //        };
 //    }
     /**
